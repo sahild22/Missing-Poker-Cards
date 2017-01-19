@@ -5,6 +5,8 @@ This is an homework exercise of my Big Data course. In this MapReduce code to yo
 * Copy Poker Input File.txt to HDFS
 * Make the .jar file of MissingPokerCards.java
 * Run MissingPokerCards.jar file on Poker Input File.txt using the command:
-'hadoop jar MissingPokerCards.jar Poker\ Input\ File.txt output'
+```
+hadoop jar MissingPokerCards.jar Poker\ Input\ File.txt output
+```
 
 
