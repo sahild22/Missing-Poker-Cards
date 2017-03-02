@@ -34,21 +34,20 @@ public static class myReducer extends Reducer<Text, IntWritable, Text, IntWritab
     	// Input to Reducer = (HEART,(1,2,3,4,7,8,9,11,12));
 	// Input to Reducer = (DIAMOND,(1,2,3,4,7,9,11,12));
     	ArrayList<Integer> nums = new ArrayList<Integer>();
-    	int sum=0;
-    	int tempVal=0;
+    	int sum = 0;
+    	int tempVal = 0;
     	for (IntWritable val : value) {
     		sum+= val.get();
-    		tempVal=val.get();
+    		tempVal = val.get();
     		nums.add(tempVal);
     	}
    
-    	if(sum<91){
-    		for (int i=1;i<=13;i++){
+    	if(sum < 91){
+    		for (int i = 1;i <= 13;i++){
     			if(!nums.contains(i))
     				 context.write(key, new IntWritable(i));
     		}
-    }
-   
+    	}
     }    
 }
 
