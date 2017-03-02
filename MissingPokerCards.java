@@ -31,8 +31,8 @@ public static class myMapper extends Mapper<LongWritable, Text, Text, IntWritabl
 public static class myReducer extends Reducer<Text, IntWritable, Text, IntWritable>{   
     public void reduce(Text key, Iterable<IntWritable> value, Context context)
     throws IOException, InterruptedException {
-    	// value = (HEART,(1,2,3,4,7,8,9,11,12));
-	 	// value = (DIAMOND,(1,2,3,4,7,9,11,12));
+    	// Input to Reducer = (HEART,(1,2,3,4,7,8,9,11,12));
+	// Input to Reducer = (DIAMOND,(1,2,3,4,7,9,11,12));
     	ArrayList<Integer> nums = new ArrayList<Integer>();
     	int sum=0;
     	int tempVal=0;
