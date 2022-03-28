@@ -15,8 +15,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 
-public class poker {
-public static class myMapper extends Mapper<LongWritable, Text, Text, IntWritable>{
+public class Pokerr {
+public static class myyMapper extends Mapper<LongWritable, Text, Text, IntWritable>{
   
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException
     {	
@@ -28,21 +28,21 @@ public static class myMapper extends Mapper<LongWritable, Text, Text, IntWritabl
     }
 }
 
-public static class myReducer extends Reducer<Text, IntWritable, Text, IntWritable>{   
+public static class myyReducer extends Reducer<Text, IntWritable, Text, IntWritable>{   
     public void reduce(Text key, Iterable<IntWritable> value, Context context)
     throws IOException, InterruptedException {
     	// Input to Reducer = (HEART,(1,2,3,4,7,8,9,11,12));
 	// Input to Reducer = (DIAMOND,(1,2,3,4,7,9,11,12));
     	ArrayList<Integer> nums = new ArrayList<Integer>();
-    	int sum = 0;
-    	int tempVal = 0;
+    	int asum = 0;
+    	int tempValue = 0;
     	for (IntWritable val : value) {
-    		sum+= val.get();
-    		tempVal = val.get();
-    		nums.add(tempVal);
+    		asum+= val.get();
+    		tempValue = val.get();
+    		nums.add(tempValue);
     	}
    
-    	if(sum < 91){
+    	if(asum < 91){
     		for (int i = 1;i <= 13;i++){
     			if(!nums.contains(i))
     				 context.write(key, new IntWritable(i));
@@ -54,9 +54,9 @@ public static class myReducer extends Reducer<Text, IntWritable, Text, IntWritab
 public static void main(String[] args) throws Exception {
     Configuration conf = new Configuration();
     Job job = new Job(conf, "Find missing Cards");
-    job.setJarByClass(poker.class);
-    job.setMapperClass(myMapper.class);
-    job.setReducerClass(myReducer.class);
+    job.setJarByClass(Pokerr.class);
+    job.setMapperClass(myyMapper.class);
+    job.setReducerClass(myyReducer.class);
     job.setMapOutputKeyClass(Text.class);
     job.setMapOutputValueClass(IntWritable.class);
     FileInputFormat.addInputPath(job, new Path(args[0]));
